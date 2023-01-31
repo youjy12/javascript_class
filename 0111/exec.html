@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실습예제 - 스티브잡스 제이쿼리</title>
+  <style>
+    *{margin:0px; padding:0px;}
+    article{
+      width: 550px;
+      height:278px;
+      border: 3px solid #333;
+      position:relative;
+      overflow: hidden;
+    }
+    #jobs_t{
+      position:absolute;
+      top: 80px;
+      left: -550px;
+    }
+    #jobs_m{
+      position:absolute;
+      bottom: -278px;
+      right: 0px;
+    }
+
+  </style>
+  <!--제이쿼리 라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <!--제이쿼리 UI라이브러리-->
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script>
+    $(function(){
+      $('#jobs_t').animate({'left':'50px'},800);
+    });
+    $(function(){
+      $('#jobs_m').delay(800).animate({'bottom':'0px'},700);
+    });
+
+  </script>
+</head>
+<body>
+  <article>
+    <h2 id="jobs_t">Steve Jobs
+      <p>1955-2011</p>
+    </h2>
+    <img src="./images/jobs.png" alt="스티브잡스" id="jobs_m">
+  </article>
+</body>
+</html>

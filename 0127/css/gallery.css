@@ -1,0 +1,132 @@
+@charset "utf-8";
+
+body{
+  font-family:"맑은 고딕",arial,sans-serif;
+  font-size:12px;
+  color:#333;
+}
+a{color:#333;text-decoration:none;}
+h2, p, .desc, .desc li{padding:5px;}
+
+main{margin-top:50px;}
+.gallery{
+  width:1240px;
+  margin:0px auto;
+}
+.gallery h2{
+  text-align:center;
+  line-height:60px;
+  font-size:24px;
+}
+.g_navi{
+  height:50px;
+  border-bottom:3px solid #000;
+}
+.g_navi > ul{
+  display:flex;
+  justify-content:center;
+}
+.g_navi > ul > li{
+  margin:0px 10px;
+}
+.g_navi > ul > li > a{
+  font-size:18px;
+  background:#000;
+  color:#fff;
+  padding:4px 14px 5px 14px;
+  border-radius:20px;
+  line-height:40px;
+  text-transform:uppercase;
+}
+.act{background: #ff3399 !important;}
+
+/*갤러리 이미지 서식*/
+.g_list{
+  display:flex;
+  padding:20px;
+  flex-wrap: wrap; /*다음줄로 자동넘김*/
+}
+.g_list > li{
+  width:25%;
+  height:200px;
+  overflow:hidden;
+  position:relative;
+}
+.g_list > li> a{}
+.g_list > li> a img{
+  width:100%;
+  transition: 0.3s;
+  filter:brightness(0.9);
+}
+.g_list > li> a img:hover{
+  border-radius: 10px 120px 20px 3px;
+  transform:scale(0.9);
+}
+.g_list > li> a span{
+  display:block;
+  font-size: 18px;
+  background: rgba(0,0,0,.7);
+  line-height:40px;
+  color: #fff;
+  position:absolute;
+  bottom: -40px; left:0px;
+  text-indent: 10px;
+  width:100%;
+  /* transition: 0.3s; */
+}
+/* .g_list > li > a:hover span{
+  bottom:0px;
+} */
+.modal *{margin:0px; padding:0px;}
+.modal{
+  width: 100%; height:100%;
+  background: rgba(0,0,0,.8);
+  position:fixed;
+  left:0;
+  top:0;
+}
+.center{
+  width:800px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+.center img{
+  width: 100%;
+  vertical-align: top;
+}
+.modal h3{
+  color: #fff;
+  font-size: 24px;
+  line-height: 50px;
+  text-align: center;
+}
+.modal i.fa-times{
+  position:absolute;
+  color: #ff3399;
+  right: -2%;
+  top:-2%;
+  font-size: 48px;
+  cursor:pointer;
+}
+.modal i.fa-angle-left, .modal i.fa-angle-right{
+  position:absolute;
+  font-size: 50px;
+  top:50%;
+  color:#ebff82;
+  cursor:pointer;
+}
+.modal i.fa-angle-left{
+  left:-40px;
+}
+.modal i.fa-angle-right{
+  right:-40px;
+}
+.modal span{
+  display:block;
+  color:#fff;
+  position:relative;bottom:-10px;
+  font-size:18px;
+  text-align: center;
+}

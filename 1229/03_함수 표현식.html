@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03_함수 표현식 p.535</title>
+</head>
+<body>
+  <h2>03_함수 표현식 p.535</h2>
+  <p>함수작성은 함수명을 만들고 선언하여 내용을 작성한 뒤에 함수명을 호출하여 실행하였다. 이 방법은 사용자가 언제든 필요할 때 실행할 수 있기 때문에 많이 활용된다.</p>
+  <p>함수이름을 지정하지 않고도 바로 실행하는 방법도 있다. 이러한 함수 실행방법을 익명함수, 즉시실행함수라고 한다.</p>
+
+  <pre>
+    function(매개변수){
+      실행내용;
+    }
+  </pre>
+
+  <script>
+    //1. 익명의 함수
+    //함수에 이름이 없다.
+    //함수를 변수에 할당할 수 있고 다른 함수의 매개변수로 사용 가능
+    let sum = function(a,b) {
+      return a + b;
+    }
+    
+    document.write('함수실행결과: ' + sum(10,20) +'<br>');
+    //기존 함수 출력법
+    let a1=10;
+    let b1=20;
+    function sum1(a1,b1){
+      let sum1 = a1 + b1;
+      document.write(sum1);
+    }
+    sum1(a1,b1);
+
+    //2. 즉시실행함수
+    // 함수를 실행하는 순간 자바스크립트 해석기에 의해 동작함.
+    //식 형태로 선언하기 때문에 함수 선언 끝에 세미콜론(;)을 작성함.
+    //지역함수인데 밖에서 출력하면 오류가 남, 따라서 밖에서 선언해줘야 전역변수로됨
+    let sum2; //전역변수
+    (function(a2,b2) {
+      sum2 = a2 + b2;
+    }(100,200));
+    document.write('즉시실행함수 결과 :' + sum2 +'<br>');
+    
+    //3.화살표함수
+    //2015년 자바스크립트 표준화가 되면서 새롭게 변경된 함수작성법
+    //function 을 =>(화살표로 단축)
+    //익명함수로만 작성이 가능.
+
+    //1. 매개변수 없는 함수
+    const h1 = function(){
+      return "매개변수 없는 화살표함수 사용하기";
+    }
+    const h1 =()=>{
+      return "매개변수 없는 화살표함수 사용하기";
+    }
+    const h1 =()=>{
+      alert("매개변수 없는 화살표함수 사용하기");
+    }
+    //2. 매개변수가 있는 함수
+    let h2 = function(user){
+      document.write(user + '님 반갑습니다.');
+    }
+    let h2 = user => {
+      document.write(user + '님 반갑습니다.');
+    }
+    let s = function(c,d){
+      document.write(c+d);
+    }
+    let s = (a, b) => document.write(a+b);
+  </script>
+</body>
+</html>

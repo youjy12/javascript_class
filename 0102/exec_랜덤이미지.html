@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>naver_랜덤 배너이미지</title>
+</head>
+<body>
+  <h2>naver_랜덤 배너이미지</h2>
+  <p>수학객체 ceil, random메서드를 활용하여 사용자가 사이트 방문시 새로운 이미지 배너 나오게 하기</p>
+
+  <div id="banner"></div>
+
+  <script>
+    let ran = Math.ceil(Math.random()*8);
+    console.log(ran); //테스트
+
+    //출력하기(태그를 직접 삽입할 경우)
+    document.getElementById('banner').innerHTML="<img src='./img/banner0"+ran+".jpg' alt=''>";
+
+    //출력하기(해당 이미지를 직접 선택하여 속성만 변경하는 경우)
+    //document.getElementById('banner').src="'./img/banner0"+ran+".jpg'";
+  </script>
+</body>
+</html>

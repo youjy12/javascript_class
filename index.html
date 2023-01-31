@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>웹 프로그래밍의 꽃! 자바스크립트_제이쿼리를 활용한 다양한 효과적용</title>
+  <style>
+    *{margin: 0;padding: 0;}
+    body{
+      font-family: "맑은 고딕", arial, sans-serif;
+      font-size: 12px;
+      color: #333;
+    }
+    h1, h2{text-align: center; }
+    h1 img{width: 300px;}
+    h2{line-height: 40px;}
+
+    /* 테두리 선 */
+    .border01{
+      border-top: 3px solid #ffcc00;
+      border-bottom: 3px solid #ffcc00;
+      margin-bottom: 50px;
+    }
+    .border02{
+      border-top: 3px solid #0f3047;
+      border-bottom: 3px solid #0f3047;
+    }
+
+    /* 제목 배경 */
+    .bgcolor01{background: #ffd93e;}
+    .bgcolor02{background: #26506d;}
+    dl{text-indent: 20px;}
+    dt{
+      font-size: 14px;
+      color: #fff;
+      padding: 12px 0;
+      font-weight: bold;
+      border-bottom: 1px solid #fff;
+    }
+    dd{
+      border-bottom: 1px solid #ccc;
+      text-indent: 30px;}
+    dd a{
+      display: block;
+      font-size: 12px;
+      line-height: 40px;
+      color: #333;
+      text-decoration: none;
+    }
+    .border01 dd a:hover{
+      background: #ffeda3;
+    }
+    .border02 dd a:hover{
+      background: #90afc5;
+    }
+    footer{
+      background: #808080;
+      color: #fff;
+      text-align: center;
+      line-height: 50px;
+    }
+    footer address{font-style: normal;}
+  </style>
+</head>
+<body>
+  <header>
+  <h1><a href="index.html" title="처음으로 바로가기">
+    <img src="./images/js_logo.png" alt="자바스크립트로고"></a></h1>
+  </header>
+  <main>
+  <h2>1. 자바스크립트</h2>
+    <section class="border01">
+    <dl>
+      <dt class="bgcolor01">1일차 - 자바스크립트 소개와 기초문법</dt>
+      <dd><a href="./1219/01_javascript_start.html" title="소개와 기초문법">01_자바스크립트 소개와 기초문법</a></dd>
+      <dd><a href="./1219/02_javascript_exec.html" title="활용예제">02_자바스크립트로 만들 수 있는 콘텐츠 찾아보기/만들기</a></dd>
+    </dl>
+
+    <dl>
+      <dt class="bgcolor01">2일차 - 자바스크립트 문서 출력 방법</dt>
+      <dd><a href="./1221/01자바스크립트 문서출력방법.html" title="문서출력방법">01_문서출력방법</a></dd>
+      <dd><a href="./1221/02자바스크립트 변수선언과 작성법.html" title="변수선언과 작성법">02_자바스크립트로 변수선언과 작성법</a></dd>
+    </dl>
+
+    <dl>
+      <dt class="bgcolor01">3일차 - 자바스크립트 소개와 기초문법</dt>
+      <dd><a href="./1222/01변수복습.html" title="변수복습">01_변수복습</a></dd>
+      <dd><a href="./1222/02데이터타입.html" title="데이터타입">02_데이터타입</a></dd>
+    </dl>
+
+    <dl>
+      <dt class="bgcolor01">4일차 - 연산자</dt>
+      <dd><a href="./1223/01_operate.html" title="01_연산자">01_연산자</a></dd>
+      <dd><a href="./1223/실습예제_연산자를 활용한 사칙연산 모바일 계산기.html" title="실습예제">실습예제 - 연산자를 활용한 사칙연산 모바일 계산기</a></dd>
+    </dl>
+
+    <dl>
+      <dt class="bgcolor01">5일차 - 제어문</dt>
+      <dd><a href="./1226/01제어문(1_조건문).html" title="조건문">01_조건문</a></dd>
+      <dd><a href="./1226/01제어문(2_선택문).html" title="선택문">02_선택문</a></dd>
+      <dd><a href="./1226/01제어문(3_반복문).html" title="반복문">03_반복문</a></dd>
+    </dl>
+
+    <dl>
+      <dt class="bgcolor01">6일차 - 함수(function)</dt>
+      <dd><a href="./1227/01javascript_함수(function).html" title="함수의 정의">01_함수의 정의</a></dd>
+      <dd><a href="./1227/banner.html" title="배너">실습예제 - 함수를 활용하여 배너 구현하기</a></dd>
+      <dd><a href="./1227/exec01.html" title="자리배치도">실습예제 - 반복문을 활용한 자리배치도 만들기</a></dd>
+    </dl>
+
+    <dl>
+      <dt class="bgcolor01">7일차 - 함수(function)</dt>
+      <dd><a href="./1229/01함수선언과실행.html" title="함수선언과 실행">01_함수선언과 실행</a></dd>
+      <dd><a href="./1229/03함수 표현식.html" title="함수 표현식">02_함수 표현식</a></dd>
+      <dd><a href="./1229/02함수를 활용하여 적정체중_비만도지수구하기.html" title="비만도 지수 구하기">실습예제 - 함수를 활용하여 적정체중_비만도 지수 구하기</a></dd>
+    </dl>
+
+    <dl>
+      <dt class="bgcolor01">8일차 - 함수(function)</dt>
+      <dd><a href="./1230/01variable(변수)복습과 유의사항.html" title="변수 복습과 유의사항">01_variable(변수)복습과 유의사항</a></dd>
+      <dd><a href="./1230/02event(이벤트).html" title="이벤트">02_event(이벤트)</a></dd>
+      <dd><a href="./1230/exec01_tab.html" title="tab">실습예제 - tab</a></dd>
+      <dd><a href="./1230/exec02_tab_news_list.html" title="tab_news_list">실습예제 - tab_news_list</a></dd>
+      <dd><a href="./1230/exec03_css news_list.html" title="라디오버튼을 활용한 탭메뉴">실습예제 - 라디오버튼을 활용한 탭메뉴 뉴스기사목록</a></dd>
+    </dl>
+
+    <dl>
+      <dt class="bgcolor01">9일차 - 객체(object)</dt>
+      <dd><a href="./0102/01_객체(object).html" title="객체">01_객체(object)</a></dd>
+      <dd><a href="./0102/02_내장객체(object)_배열(array).html" title="_배열">02_내장객체(object)_배열(array)</a></dd>
+      <dd><a href="./0102/03_내장객체(object)_Date.html" title="Date">03_내장객체(object)_Date(날짜와 시간)</a></dd>
+      <dd><a href="./0102/04_내장객체(object)_Math.html" title="Math">04_내장객체(object)_Math</a></dd>
+      <dd><a href="./0102/exec_랜덤이미지.html" title="랜덤이미지">실습예제 - 랜덤이미지</a></dd>
+    </dl>
+
+    <dl>
+      <dt class="bgcolor01">10일차 - window(브라우저)_object(객체)</dt>
+      <dd><a href="./0103/01_window_object.html" title="브라우저 객체">01_window(브라우저)_object(객체)</a></dd>
+      <dd><a href="./0103/02_document_object.html" title="문서객체모델">02_document(문서객체모델)_object</a></dd>
+      <dd><a href="./0103/index.html" title="적응형 웹_pc화면">실습예제 - 적응형 웹_pc화면</a></dd>
+    </dl>
+
+    <dl>
+      <dt class="bgcolor01">11일차 - 문서객체모델</dt>
+      <dd><a href="./0104/01_문서객체모델_내용수정_삽입하기.html" title="내용수정 삽입하기">01_내용수정_삽입하기</a></dd>
+      <dd><a href="./0104/02_문서객체모델_속성변경.html" title="02_속성변경">02_속성변경</a></dd>
+      <dd><a href="./0104/03_문자열(string) 객체.html" title="객체">03_문자열(string) 객체</a></dd>
+      <dd><a href="./0104/exec01.html" title="상품 미리보기 콘텐츠">실습예제 - 자바스크립트 문서객체모델_속성값을 활용한 상품 미리보기 콘텐츠</a></dd>
+      <dd><a href="./0104/exec02.html" title="문자열객체를 사용한 이미지 갤러리">실습예제 - 문자열객체를 사용한 이미지 갤러리</a></dd>
+      <dd><a href="./0104/exec03.html" title="네이버 영화 갤러리">실습예제 - 네이버 영화 갤러리</a></dd>
+    </dl>
+
+    <dl>
+      <dt class="bgcolor01">12일차 - 캐러셀_carousel_slide</dt>
+      <dd><a href="./0105/carousel_slide.html" title="캐러셀">01_캐러셀_carousel_slide</a></dd>
+      <dd><a href="./0105/carousel_slide_response.html" title="캐러셀 반응형">02_캐러셀 슬라이드(반응형) 구현하기</a></dd>
+      <dd><a href="./0105/naver_gallery.html" title="영화 갤러리">03_네이버 영화 갤러리</a></dd>
+    </dl>
+    </section>
+
+  <h1><a href="index.html" title="처음으로 바로가기">
+    <img src="./images/jq_logo.png" alt="제이쿼리로고"></a></h1>
+  <h2>2. 제이쿼리</h2>
+    <section class="border02">
+      <dl>
+        <dt class="bgcolor02">1일차-제이쿼리 소개와 문법</dt>
+        <dd><a href="./0106/01_제이쿼리소개와 문법.html" title="소개와 문법">01_제이쿼리소개와 문법</a></dd>
+        <dd><a href="./0106/02_제이쿼리 선택자와 css메소드 활용하기.html" title="선택자와 css메소드">02_제이쿼리 선택자와 css메소드 활용하기</a></dd>
+        <dd><a href="" title="실습예제">03_선택자 실습예제</a></dd>
+      </dl>
+      <dl>
+        <dt class="bgcolor02">2일차-제이쿼리 이벤트와 효과</dt>
+        <dd><a href="./0109/01jquery_event.html" title="이벤트">01_제이쿼리 이벤트</a></dd>
+        <dd><a href="./0109/02jquery_effect.html" title="효과">02_제이쿼리 효과</a></dd>
+        <dd><a href="" title="실습예제">03_실습예제(쿠팡)</a></dd>
+      </dl>
+      <dl>
+        <dt class="bgcolor02">3일차-제이쿼리 애니메이트 메서드</dt>
+        <dd><a href="./0111/01_animate메서드.html" title="애니메이트">01_제이쿼리 애니메이트 메서드</a></dd>
+        <dd><a href="./0111/02_exec.html" title="실습예제">02_실습예제 스티브잡스</a></dd>
+      </dl>
+        <dl>
+        <dt class="bgcolor02">4일차-제이쿼리 애니메이트 메서드</dt>
+        <dd><a href="./0111/01_animate메서드.html" title="애니메이트">01_제이쿼리 애니메이트 메서드</a></dd>
+        <dd><a href="./0111/02_exec.html" title="실습예제">02_실습예제 스티브잡스</a></dd>
+      </dl>
+        <dl>
+        <dt class="bgcolor02">5일차-제이쿼리 애니메이트 메서드</dt>
+        <dd><a href="./0111/01_animate메서드.html" title="애니메이트">01_제이쿼리 애니메이트 메서드</a></dd>
+        <dd><a href="./0111/02_exec.html" title="실습예제">02_실습예제 스티브잡스</a></dd>
+      </dl>
+        <dl>
+        <dt class="bgcolor02">6일차-제이쿼리 애니메이트 메서드</dt>
+        <dd><a href="./0111/01_animate메서드.html" title="애니메이트">01_제이쿼리 애니메이트 메서드</a></dd>
+        <dd><a href="./0111/02_exec.html" title="실습예제">02_실습예제 스티브잡스</a></dd>
+      </dl>
+        <dl>
+        <dt class="bgcolor02">7일차-제이쿼리 애니메이트 메서드</dt>
+        <dd><a href="./0111/01_animate메서드.html" title="애니메이트">01_제이쿼리 애니메이트 메서드</a></dd>
+        <dd><a href="./0111/02_exec.html" title="실습예제">02_실습예제 스티브잡스</a></dd>
+      </dl>
+        <dl>
+        <dt class="bgcolor02">8일차-제이쿼리 애니메이트 메서드</dt>
+        <dd><a href="./0111/01_animate메서드.html" title="애니메이트">01_제이쿼리 애니메이트 메서드</a></dd>
+        <dd><a href="./0111/02_exec.html" title="실습예제">02_실습예제 스티브잡스</a></dd>
+      </dl>
+        <dl>
+        <dt class="bgcolor02">9일차-제이쿼리 애니메이트 메서드</dt>
+        <dd><a href="./0111/01_animate메서드.html" title="애니메이트">01_제이쿼리 애니메이트 메서드</a></dd>
+        <dd><a href="./0111/02_exec.html" title="실습예제">02_실습예제 스티브잡스</a></dd>
+      </dl>
+        <dl>
+        <dt class="bgcolor02">10일차-제이쿼리 슬라이드, 문서객체조작</dt>
+          <dd><a href="./0125/jquery_document_object.html" title="문서객체조작">01_제이쿼리 문서객체조작</a></dd>
+        <dd><a href="./0125/total_slide.html" title="슬라이드">02_제이쿼리 슬라이드(좌,우,스탑,플레이,번호)</a></dd>
+        <dd><a href="./0125/total_slide(세로).html" title="슬라이드">03_제이쿼리 슬라이드(상,하,스탑,플레이,번호)</a></dd>
+      </dl>
+      <dl>
+        <dt class="bgcolor02">11일차-제이쿼리 문서객체조작</dt>
+          <dd><a href="./0126/jquery_DOM_class.html" title="class">01_제이쿼리 문서객체조작(class)</a></dd>
+        <dd><a href="./0126/jquery_DOM_add_remove.html" title="내용추가, 삭제">02_제이쿼리 문서객체조작(내용추가, 삭제)</a></dd>
+        <dd><a href="./0126/jquery_DOM_modal_window.html" title="슬라이드">03_제이쿼리 모달윈도(쿠키)</a></dd>
+        <dd><a href="./0126/jquery_DOM_modal_window2.html" title="슬라이드">03_제이쿼리 모달윈도2-체크박스(쿠키)</a></dd>
+        <dd><a href="./0126/jquery_DOM_image_slide.html" title="슬라이드">03_제이쿼리 이미지 가로 슬라이드(협력사 배너)</a></dd>
+      </dl>
+    </section>
+  </main>
+  <footer>
+    <address>Copyright&copy;2023 JAVASCRIPT/jQuery 학습페이지 allrights reserved.</address>
+  </footer>
+</body>
+</html>

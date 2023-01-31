@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실습예제01</title>
+  <style>
+    *{
+      margin:0px;
+      padding:0px;
+    }
+    img{
+      margin: 0px auto;
+      display: block;
+    }
+    article{
+      position: relative;
+    }
+    #close_btn{
+      color:#333;
+      font-size: 32px;
+      padding:10px;
+      line-height:50px;
+      position:absolute;
+      right:330px;
+      top:15px;
+    }
+  </style>
+
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  
+
+  <script>
+    $(document).ready(function(){
+      let b = $('#close_btn');
+      b.click(function (){
+        $('.t_banner').slideUp();
+      });
+    });
+  </script>
+
+</head>
+
+<body>
+  <article class="t_banner">
+    <img src="./exec/coupang_02.jpg" alt="배너">
+    <i class="fa-solid fa-xmark" id="close_btn"></i>
+  </article>
+
+  <header>
+    <img src="./exec/coupang_03.jpg" alt="내비게이션">
+  </header>
+
+  <maine>
+    <img src="./exec/coupang_04.jpg" alt="검색">
+  </maine>
+</body>
+</html>

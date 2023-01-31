@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>에뛰드 모바일 웹 내비게이션</title>
+  <link href="./css/main2.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div id="wrap">
+    <header>
+      <h1><a href="m_index.html" title="메인페이지로 바로가기">
+        <img src="./images/logo.png" alt="상단로고">
+      </a></h1>
+
+      <div id="toggle">
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+      </div>
+      <!-- 검색폼 -->
+      <div id="search_box">
+        <fieldset class="search">
+          <legend>검색</legend>
+          <input type="search" id="search" placeholder="검색어를 입력하세요" maxlength="50" autofocus>
+          <label for="search" class="fas fa-search"><span>검색버튼</span></label>
+        </fieldset>
+        <label class="fas fa-xmark"></label>
+      </div>
+    </header>
+
+    <!-- 글로벌 내비게이션 -->
+    <nav class="gnb">
+      <ul>
+        <li><a href="#" title="">BRAND</a></li>
+        <li><a href="#" title="">LIMITED</a></li>
+        <li><a href="#" title="">PRODUCT</a></li>
+        <li><a href="#" title="">STORY</a></li>
+        <li><a href="#" title="">FOUNDATION FACTORY</a></li>
+        <li><a href="#" title="">@etudeofficial</a></li>
+        <li><a href="#" title="">EVENT</a></li>
+        <li><a href="#" title="">STORE</a></li>
+        <li><a href="#" title="">CONTACT</a></li>
+        <li><a href="#" title="">MEMBERSHIP</a></li>
+        <li><a href="#" title="">AWARE</a></li>
+        <li><a href="#" title="">뽀오얀</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <!-- 슬라이드  3장 (좌,우, 페이드인, 아웃, 상, 하)-->
+      <article class="slide_wrap">
+        <ul class="slide">
+          <li>
+            <a href="https://brand.naver.com/etude/products/6567434914" title="기초페이지">
+              <img src="./images/slide01_01.jpg" alt="순수이미지">
+            </a>
+          </li>
+          <li>
+            <a href="https://brand.naver.com/etude/products/7090787833" title="색조페이지">
+              <img src="./images/slide02_02.jpg" alt="색조이미지">
+            </a>
+          </li>
+          <li>
+            <a href="https://www.etude.com/event/" title="이벤트페이지">
+              <img src="./images/slide03_03.jpg" alt="이벤트이미지">
+            </a>
+          </li>
+        </ul>
+      </article>
+    </main>
+
+    <footer>
+      <address>copyright2022&copy; 에뛰드 하우스 allrights reserved.</address>
+    </footer>
+
+    <!-- 제이쿼리 라이브러리 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      $(function(){
+
+        //1. 토글버튼 변수
+        let t_btn = $('#toggle');
+        let t_n = 1;
+
+        t_btn.click(function(){
+          $(this).find('span').first().toggleClass('act01');
+          $(this).find('span').eq(1).toggleClass('act02');
+          $(this).find('span').last().toggleClass('act03');
+
+          //토글버튼 클릭시 wrap의 위치가 왼쪽으로부터 80%위치에 배치가 된다.
+          $('#wrap').toggleClass('wrap_pos');
+          if(t_n==1){
+            $('body').css('overflow','hidden');
+            t_n=0;
+          }else{
+            $('body').css('overflow','scroll');
+            t_n=1;
+          }
+        });
+
+        //2. 스크롤값이 0보다 크면
+        $(window).scroll(function(){
+          let sPos =$(this).scrollTop(); //브라우저의 세로 스크롤값
+          console.log(sPos);//콘솔모드에 출력한다.
+          if(sPos>0){
+            $('#toggle').addClass('on');
+          }else{
+            $('#toggle').removeClass('on'); 
+          }
+        });
+      
+          //3. 움직이는 함수
+      function moveLeft(){
+        $('.slide').animate({'margin-left':'-100%'},500,function(){
+          //왼쪽 첫번째 li태그를 마지막 li태그의 뒤쪽에다가 자리를 옮긴다.
+          $('.slide li:first-child').insertAfter('.slide li:last-child');
+          $('.slide').css('margin-left','-100%');
+        });
+      }
+      function moveRight(){
+        $('.slide').animate({'margin-left':'0px'},500,function(){
+          //오른쪽 마지막 li태그를 왼쪽 첫번째 li태그의 앞에 자리를 옮긴다.
+          $('.slide li:last-child').insertBefore('.slide li:first-child');
+          $('.slide ul').css('margin-left','-100%');
+        });
+      }
+
+      //4. 시간객체로 3초마다 함수 호출하기
+      let Timer = setInterval(moveRight,3000);
+
+      });
+    </script>
+  </div>
+</body>
+</html>

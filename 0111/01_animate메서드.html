@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>제이쿼리_01_animate메서드</title>
+  <style>
+    .circle{
+      width:100px;height:100px;
+      border-radius: 50%;
+      background-color: #f00;
+      text-align:center;
+      line-height: 100px;
+      position:relative; /*현위치가 기준~*/
+      color: #fff;
+    }
+    #kuromi{position:relative;}
+    .box{
+      background-color: rgb(247, 19, 159);
+      width:60px; height:60px;
+      margin-bottom: 10px;
+      position:relative;
+    }
+    /*막대 애니메이션*/
+    .bar01, .bar02, .bar03{
+      background: #f00;
+      width:20px; height:50px;
+      position:relative;
+      left:0px;
+      margin-bottom: 10px;
+    }
+    .wrap{
+      width:600px;
+      height:15px;
+      background: #ddd;
+      box-shadow: 1px 2px 3px #333;
+    }
+    article li{
+      display:flex;
+    }
+    .border01{
+      width: 800px;
+      height: 100px;
+      padding: 20px;
+      border: 1px solid #333;
+      border-radius: 15px;
+    }
+  </style>
+  <!--제이쿼리 라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <!--제이쿼리 UI라이브러리-->
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script>
+    $(function(){
+
+      $('#btn01').click(function(){ //play버튼 클릭시 애니메이션 동작함
+        $('.circle').animate({'left':'800px'},500).animate({'left':'0px'},1500);
+      });
+      $('#btn02').click(function(){ //play버튼 클릭시 애니메이션 중지
+        $('.circle').stop();
+      });
+      $('#btn03').click(function(){ //원위치로 버튼클릭시 처음위치로 이동
+        $('.circle').animate({'left':'0px'},1000);
+        // $('.circle').css('left':'0px');
+      });
+
+      //버튼 클릭시 캐릭터 사진 이동하기
+      let n = 50; //이동할 초기값
+      $('#l_btn').click(function(){
+        $('#kuromi').animate({'left':'-='+n},500);
+      });
+      $('#r_btn').click(function(){
+        $('#kuromi').animate({'left':'+='+n},500);
+      });
+      $('#t_btn').click(function(){
+        $('#kuromi').animate({'top':'-='+n},500);
+      });
+      $('#b_btn').click(function(){
+        $('#kuromi').animate({'top':'+='+n},500);
+      });
+
+      //box에 마우스 오버시 움직이게 하기
+      $('.box').mouseenter(function(){
+        $(this).animate({'left':'800px'},600);
+      });
+      $('.box').mouseleave(function(){
+        $(this).animate({'left':'0px'},1200);
+      });
+
+      //easing값 사용하기
+      $('#btn04').click(function(){
+        $('.bar01').animate({'width':'500px'},500, 'easeOutQuint');
+      });
+      $('#btn05').click(function(){
+        $('.bar02').animate({'width':'800px'},500, 'easeOutElastic');
+      });
+      $('#btn06').click(function(){
+        $('.bar03').animate({'width':'400px'},500, 'easeInBounce');
+      });
+    });
+  </script>
+</head>
+<body>
+  <h2>제이쿼리_01_animate메서드</h2>
+  <p>제이쿼리에서는 효과와 애니메이트 메소드를 사용하여 사용자가 선택한 요소를 다양하게 움직이게 만들 수 있다.</p>
+
+  <h3>1. animate 메소드 작성법</h3>
+  <p>$('대상').animate({'속성':'값'},시간, 가속도, 콜백함수);</p>
+  <p>{'속성':'값'} - css속성과 값을 말하며, '값'에는 자바스크립트 변수나 연산자를 사용할 수 있다.</p>
+  <p>시간 - 애니메이션이 동작하는 시간을 말하며 1/1000초=1초를 나타냄</p>
+  <p>가속도 - easing메소드를 활용한 값을 말함(이미지 참조)</p>
+  <p>콜백함수 - callback function으로서 애니메이션 동작이 끝나면 다음 동작을 이어서 실행하고자 할 때 사용.</p>
+
+  <h3>2. animate메소드 사용하여 '원'움직이게 하기</h3>
+  <div class="circle">원</div>
+  <input type="button" value="play" id="btn01">
+  <input type="button" value="stop" id="btn02">
+  <input type="button" value="원위치로" id="btn03">
+  <h3>3. 자바스크립트 절대값을 활용하여 캐릭터 위치 조정하기</h3>
+  <img src="./images/kuromi.png" alt="캐릭터" id="kuromi">
+  <br>
+  <input type="button" value="&#x2190;" id="l_btn">
+  <input type="button" value="&#x2192;" id="r_btn">
+  <input type="button" value="&#x2191;" id="t_btn">
+  <input type="button" value="&#x2193;" id="b_btn">
+  <h3>4. box에 마우스 오버시 애니메이션 연속 동작하게 하기</h3>
+  <div class="box">&nbsp;</div>
+  <div class="box">&nbsp;</div>
+  <div class="box">&nbsp;</div>
+  <div class="box">&nbsp;</div>
+  <div class="box">&nbsp;</div>
+  <div class="box">&nbsp;</div>
+
+  <h3>5. 제이쿼리 UI라이브러리를 사용하여 속도감(easing)주기</h3>
+  <p>jquery.com사이트의 왼쪽 상단의 ui탭을 클릭하고 왼쪽 easing메뉴에서 jquery.ui 라이브러리를 찾아 연결하여 사용한다.</p>
+  <img src="./images/easing.png" alt="속도감주기">
+  <div class="bar01"></div>
+  <input type="button" value="easeOutQuint" id="btn04">
+  <div class="bar02"></div>
+  <input type="button" value="easeOutElastic" id="btn05">
+  <div class="bar03"></div>
+  <input type="button" value="easeInBounce" id="btn06">
+
+
+  <h3>6. 실습 - 자신의 능력치 표현하기(html, css, javascript/jquery, UI/UX design)</h3>
+  <article class="border01">
+  <h4>MY SKILL</h4>
+  <ul class="border02">
+    <li>HTML
+      <div class="wrap">
+        <div class="h_wrap"></div>
+      </div>
+    </li>
+    <li>CSS
+      <div class="wrap">
+        <div class="c_wrap"></div>
+      </div>
+    </li>
+    <li>JAVASCRIPT
+      <div class="wrap">
+        <div class="ja_wrap"></div>
+      </div>
+    </li>
+    <li>JQUERY
+      <div class="wrap">
+        <div class="jq_wrap"></div>
+      </div>
+    </li>
+    <li>PHOTOSHOP
+      <div class="wrap">
+        <div class="p_wrap"></div>
+      </div>
+    </li>
+    <li>UI/UX DESIGN
+      <div class="wrap">
+        <div class="f_wrap"></div>
+      </div>
+    </li>
+  </ul>
+  </article>
+  
+</body>
+</html>

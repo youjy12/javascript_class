@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>메뉴에 마우스 오버시 선택한 이미지요소에 속성값을 변경하여 다른 이미지가 나오게 하기</title>
+  <style>
+    .banner{
+      margin-top:100px;
+      width:1920px;height:450px;border:3px solid #000;
+      position:relative;
+  }
+    .banner *{margin:0px;padding:0px;}
+    .banner nav{
+      background: #fff;
+      position:absolute;
+      right:400px;top:45px;
+    }
+    .banner nav ul{
+      list-style:none;
+      height:360px;
+      box-sizing: border-box;
+    }
+    .banner nav li{line-height:60px;padding:0px 10px;}
+    .banner nav li:hover{border: 3px solid blue;}
+    .banner nav a{text-decoration:none;color:#333333;}
+    .banner nav a:hover{text-decoration:underline;}
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    $(function(){
+      //텍스트에 마우스오버시 href속성안에 값을 가져와서 변수에 담는다.
+      $('.banner nav li a').mouseenter(function(){
+        let url = $(this).attr('href'); //href속성값을 변수에 담는다.
+        // console.log(url); //테스트해본다
+
+        $('.banner div img').attr('src',url); //이미지 src속성에 대입한다.
+      }); 
+    });
+  </script>
+</head>
+<body>
+  <article class="banner">
+    <div>
+      <img src="./images03/banner01.jpg" alt="큰사진">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="./images03/banner01.jpg" title="">바닐라코</a></li>
+        <li><a href="./images03/banner02.jpg" title="">인기간식</a></li>
+        <li><a href="./images03/banner03.jpg" title="">프렌치카페</a></li>
+        <li><a href="./images03/banner04.png" title="">생필품 쟁여두기</a></li>
+        <li><a href="./images03/banner05.jpg" title="">설연휴 끝! 특가</a></li>
+        <li><a href="./images03/banner06.jpg" title="">직수입 신년 빅세일</a></li>
+      </ul>
+    </nav>
+  </article>
+</body>
+</html>

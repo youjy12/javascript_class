@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01jquery_event</title>
+  <style>
+    .box{
+      border:1px solid #000;
+			text-align:center;
+			margin-bottom:5px;
+			line-height:40px;
+			width:300px;
+			cursor:pointer;
+    }
+    /* 탭메뉴 서식 */
+		.tab_mnu{margin:0px;padding:0px;}
+		.tab_mnu > li{
+			list-style:none;
+			float:left;
+			/* display:inline-block;
+			display:inline; */
+			margin-right:10px;
+		}
+		.tab_mnu > li > a{
+			text-decoration:none;
+			color:#333;
+			border:1px solid #333;
+			padding:6px 10px;
+		}
+    /* html{
+      scroll-behavior: smooth;
+    } */
+    /* 탑버튼 */
+    .top_btn{
+      border:1px solid #ccc;
+      color:#fff;background:#fff;
+      padding:6px;
+      text-transform:uppercase;
+      color:#333;
+      text-decoration:none;
+      position:fixed;
+      right:10px;bottom:30px;
+      display:none;
+    }
+    .top_btn:hover{
+      background:#222;
+      color:#fff;
+      border:1px solid #222;
+    }
+  </style>
+  <!-- 제이쿼리 라이브러리 연결하기 - 직접다운, cdn방식 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script>
+    // let btn01 = document.querySelector('.box01');
+    // btn01.addEventListener('click',function(){
+    //   this.style.background='#ff0';
+    // });
+
+    $(document).ready(function(){//html문서가 로딩이 끝나면 제이쿼리를 동작하라
+      $('.box01').click(function(){
+        $(this).css('background','#ff0');
+      });
+      $('.box02').dblclick(function(){
+        $(this).css('background','#ff0');
+      });
+      $('.box03').mouseenter(function(){  //mouseover
+        $(this).css('background','#ff0');
+      });
+      $('.box04').mouseleave(function(){  //mouseover
+        $(this).css('background','#ff0');
+      });
+      $('.box05').hover(function(){  //마우스 오버시
+        $(this).css('background','#ff0');
+      }, function(){ //마우스 아웃시
+        $(this).css('background','#0f0');
+      });
+      $('.box06').toggle(function(){ //누를때마다 함수가 동작
+        $(this).next().css('background','#f00'); //빨
+      },function(){
+        $(this).next().css('background','#0f0'); //주
+      },function(){
+        $(this).next().css('background','#ff0');//노
+      },function(){
+        $(this).next().css('background','#0f0');//초
+      },function(){
+        $(this).next().css('background','#00f');//파
+      },function(){
+        $(this).next().css('background','#ccc');//남
+      },function(){
+        $(this).next().css('background','#0f0');//보
+      });
+
+// 탭메뉴 구현
+      let t_mnu = $('.tab_mnu > li > a'); //탭메뉴 변수에 담기
+      t_mnu.each(function(){ //탭메뉴 각각에 대해 개별 함수를 부여함
+        $(this).click(function(e){ //a를 클릭하면
+          //e.preventDefaule(); //새로고침 방지 - 
+          //선택한 a요소에 서식을 적용하고 부모요소(li)의 형제요소들을 찾아(다른 li) 자손('a')를 선택하여 서식을 원래대로 없앤다.
+          $(this).css('background','#ff0').parent().siblings().children('a').css('background','none');
+          return false; //새로고침 방지
+        });
+      });
+        
+      $('#id_txt').focusin(function(){//마우스로 클릭하여 초점이 맞추어진 경우 적용됨.
+        $(this).css({
+          'border':'1px solid #ff0',
+          'background':'#ccc'
+        });
+      });
+      $('#id_txt').focusout(function(){//마우스로 다른 곳을 클릭시 초점이 해제되면 서식을 적용.
+        $(this).css({
+          'border':'1px solid #333',
+          'background':'#fff'
+        });
+      });
+
+      // 윈도우 스크롤 이벤트
+      $(window).scroll(function(){
+        let sPos = $(this).scrollTop(); //세로스크롤값을 변수에 담는다.
+        console.log(sPos);
+
+        if(sPos>=756){
+          $('.top_btn').css('display','inline');
+        }else{
+          $('.top_btn').css('display','none');
+        }
+      });
+
+      //탑버튼을 클릭하면 화면 맨위로 올라가야.....(scroll값이 0이되는 지점)
+      $('.top_btn').click(function(){
+        $('html, body').animate({scrollTop:'0px'},300);
+        return false; //새로고침 방지
+      })
+    });
+  </script>
+</head>
+<body>
+  <h2>제이쿼리 01.이벤트(event)</h2>
+  <p>웹문서에서 버튼을 클릭한다거나 마우스를 움직이거나 하는 모든 행위를 '이벤트'라고 한다. 그리고 이벤트 발생시 함수의 실행문이 수행되도록 이벤트를 지정하는 것을 '이벤트 핸들러'라고 한다.</p>
+
+  <h3>이벤트의 종류</h3>
+  <ul>
+    <li>마우스 이벤트-클릭, 더블클릭, 오버, 아웃...</li>
+    <li>키보드 이벤트-keypress....</li>
+    <li>포커스 이벤트-focus...</li>
+    <li>폼양식 이벤트-submit...</li>
+    <li>윈도우 이벤트-scroll....</li>
+  </ul>
+
+  <h3>이벤트 등록방법(작성법)</h3>
+  <ol>
+    <li>단독이벤트 - $('이벤트 대상').이벤트메서드(function(){실행할 내용;});</li>
+    <li>그룹이벤트 - $('이벤트 대상').on('이벤트 종류1, 이벤트 종류2.....',function(){실행할 내용}</li>
+  </ol>
+
+  <h3>마우스, 폼양식, 윈도우 이벤트 사용하기</h3>
+  <ol>
+    <li>click - 마우스로 대상을 클릭하였을 때 이벤트 내용이 실행됨.</li>
+    <li>dblclick - 마우스로 대상을 더블클릭하였을 때 이벤트 내용이 실행됨.</li>
+    <li>mouseover(mouseenter) - 마우스로 대상을 오버하였을 때 이벤트 내용이 실행됨.</li>
+    <li>mouseout(mouseleave) - 마우스로 대상을 오버하였다가 뺐을 때 이벤트 내용이 실행됨.</li>
+    <li>hover - 마우스로 대상을 오버하였을때와 아웃아였을때 둘다 각각 따로 이벤트 내용을 실행함.</li>
+    <li>focus - 마우스로 클릭하여 포커스가 발생되었을 때 이벤트 발생됨.(폼양식)</li>
+    <li>blur - 폼양식에서 포커스가 해제되었을 때 이벤트가 발생됨.</li>
+    <li>toggle - 대상요소를 클릭할 때 마다 지정된 함수를 호출하여 실행함.</li>
+    <li>each - 개별 요소 마다 함수를 각각 처리함.</li>
+    <li>scroll - 윈도우 이벤트로서 가로스크롤과 세로스크롤이 동작하면 이벤트가 발생됨.</li>
+  </ol>
+
+  <div class="box box01">click이벤트</div>
+  <div class="box box02">dblclick이벤트</div>
+  <div class="box box03">mouseenter이벤트</div>
+  <div class="box box04">mouseleave이벤트</div>
+  <div class="box box05">hover이벤트</div>
+  <div class="box box06">toggle이벤트</div>
+  <p class="p01">위 toggle박스를 클릭하면 현재 문단태그요소에 서식이 변경됩니다.<br>
+    toggle이벤트는 제이쿼리 1.8버전 이하에서만 동작됩니다.</p>
+
+  <h3>each함수를 사용하여 탭메뉴 만들기 - 각각의 li의 자손 a에 개별적인 이벤트 부여</h3>
+  <ul class="tab_mnu">
+    <li><a href="#none;" title="">tab menu1</a></li>
+    <li><a href="javascript:void(0);" title="">tab menu2</a></li>
+    <li><a href="javascript:;" title="">tab menu3</a></li>
+  </ul>
+
+  <p>탭메뉴 사용시 a태그에 #을 적용하면 페이지가 상단으로 올라가게 되는데 이것을 막기 위한 방법</p>
+  <p>자바스크립트에서는 href속성에 '#none;', 'javascript:void(0)', 'javascript:;' 3가지 방법 중 하나를 사용</p>
+  <p>제이쿼리에서는 함수의 마지막에 return false 또는 함수 시작시 e(이벤트 객체)를 넣어서 사용하며 함수의 시작하는곳에 event.preventDefault(); 작성한다.</p>
+  <p>event.preventDefault(); - 해당 이벤트 발생 시, 이벤트의 전파를 막고 이벤트가 발생한 부분에서만 처리가 되게끔 만들어주는 메소드입니다. DOM 구조에서는 어떠한 요소에서 이벤트 발생 시, 해당 이벤트는 상위 요소를 타고 올라가게 되는데, 이것처럼 원하지 않는 상황이 발생할 수가 있는데, 이를 방지해 주는 역할.
+  </p>
+
+  <h3>폼양식에 사용되는 focusIn, focusOut 이벤트 적용하기</h3>
+  <fieldset>
+    <legend>로그인 폼</legend>
+    <label for="id_txt">아이디 : </label>
+    <input type="text" id="id_txt" placeholder="아이디 입력" autofocus>
+    <br>
+    <label for="pw_txt">패스워드 : </label>
+    <input type="password" id="pw_txt" placeholder="패스워드 입력">
+  </fieldset>
+
+
+  <a href="#" title="위로 바로가기" class="top_btn">top</a>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</body>
+</html>

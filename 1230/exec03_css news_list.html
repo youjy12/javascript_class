@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>라디오버튼을 활용한 탭메뉴 뉴스기사목록</title>
+<style>
+ *{margin:0px;padding:0px;} /* 여백 초기화 */
+ ul, li{list-style:none;} /* 목록기호 없애기 */
+ a{color:#333;text-decoration:none;} /*링크텍스트에 글자색변경, 밑줄 없앰 */
+ body{font-family:"맑은 고딕", arial, san-serif;font-size:12px;color:#333;}
+ 
+ h2{text-align:center;padding:50px 0px;}/*제목가운데 정렬, 안쪽여백 위아래만 적용 */
+ 
+ .news{
+	 width:298px;height:250px;/* 박스크기 */
+	 border:1px solid #333; /* 테두리 선두께 선모양 선색상 */
+	 margin:0 auto;/* 박스의 크기가 있을 때 바깥여백 위아래:0 좌우:auto로 주면 가운데 정렬 */
+}
+ input[type=radio]{display:none;} /* 라디오버튼 숨기기 */
+ 
+ label{
+	 width:150px;
+	 display:block; /* 박스요소로 변환 */
+	 float:left; /* 가로배치 */
+	 line-height:30px;
+	 text-align:center;
+	 border:1px solid #333;
+	 box-sizing:border-box; /* 패딩, 보더값이 전체크기보다 늘어날경우 방지 */
+	 margin-left:-1px;
+	 border-top:none;border-right:none;
+	 background-color:#CCC;
+	 cursor:pointer;/*마우스포인터 손가락모양 */
+	 }
+ ul{display:none;clear:both;}
+ li{
+	 line-height:34px;
+	 overflow:hidden;/* 영역에 내용이 벗어나면 숨겨짐 */
+	 text-overflow:ellipsis;/* 글자 생략 기호 넣어줌 */
+	 white-space:nowrap;/* 줄변경 금지 */
+ }
+ ul > li > span{
+	  background-color:#666;color:#fff;
+	  font-size:10px;
+	  padding-left:4px;padding-right:4px;
+	  margin-left:10px;margin-right:4px;
+	 }
+/* 첫번째 탭메뉴에 체크하면 뒤에 있는 동생중 news_list01을 보이게 하라 */
+#tab01:checked ~ .news_list01{display:block;}
+#tab01:checked + label{background-color:#fff;border-bottom:none;}
+/* 두번째 탭메뉴에 체크하면 뒤에 있는 동생중 news_list02을 보이게 하라 */
+#tab02:checked ~ .news_list02{display:block;}
+#tab02:checked + label{background-color:#fff;border-bottom:none;}
+</style>
+</head>
+<body>
+
+<h2>탭메뉴 뉴스기사목록</h2>
+
+<div class="news">
+ <input type="radio" name="a" id="tab01" checked />
+ <label for="tab01">뉴스</label>
+ <input type="radio" name="a" id="tab02" />
+ <label for="tab02">연예/스포츠</label>
+
+ <ul class="news_list01">
+  <li><span>1</span><a href="#">文 대통령-여야 4당 대표, 오늘 靑 만찬 회동asdasdasdasdasd</a></li>
+  <li><span>2</span><a href="#">트럼프 "대북 군사옵션 준비"…北 은행 무더기 제재asdfdasdasda</a></li>
+  <li><span>3</span><a href="#">"北 B-1B 출격 당시 조치 없어…레이더 안 잡힌 듯"asdasdasda</a></li>
+  <li><span>4</span><a href="#">뉴스기사내용</a></li>
+  <li><span>5</span><a href="#">뉴스기사내용</a></li>
+ </ul>
+ 
+ <ul class="news_list02">
+  <li><span>1</span><a href="#">연예/스포츠 기사내용</a></li>
+  <li><span>2</span><a href="#">연예/스포츠 기사내용</a></li>
+  <li><span>3</span><a href="#">연예/스포츠 기사내용</a></li>
+  <li><span>4</span><a href="#">연예/스포츠 기사내용</a></li>
+  <li><span>5</span><a href="#">연예/스포츠 기사내용</a></li>
+ </ul>
+  
+
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+git status (변경된 상태정보확인)
+git add .  (변경된 정보 추가)
+git status (초록색 나오는지)
+git commit -m 'jquery'(메세지 추가)
+git push origin +main
+jeon9897.github.io/javascript_class/0110/exec01/fadeIn_Out_slide.html
+
+http://localhost/
+http://127.0.0.1/
+http://localhost/index.html
+http://도메인명/
+htdocs폴더가 파일관리 폴더
