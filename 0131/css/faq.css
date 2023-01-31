@@ -90,3 +90,24 @@ fieldset input[type=submit]{
 
 /* 화살표 방향 */
 .act02{transform:rotate(180deg);}
+
+.page{
+  list-style:none;padding:0px;
+  display:flex;
+  justify-content: center;
+  font-size:16px;
+  margin-bottom: 40px;
+}
+.page > li{
+  padding:2px 10px;
+  margin-right:-1px;
+  border:1px solid #ccc;
+  color:#006633;
+}
+.on{
+  background-color:#006633 !important;
+  color: #fff !important;
+}
+.page > li:hover{background:rgb(226, 226, 226);}
+.page > li:first-child{border-radius:2px 0px 0px 2px;}
+.page > li:last-child{border-radius:0px 2px 2px 0px;}

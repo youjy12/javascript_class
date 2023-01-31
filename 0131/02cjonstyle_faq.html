@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>제이쿼리 문서객체모델(dom)-탐색메서드를 활용한 cj onstyle 자주하는 질문</title>
+  <link href="./css/cjfaq.css" rel="stylesheet" type="text/css">
+  <!-- 아이콘 폰트 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    $(function(){
+      let q = $('.faq > dt');
+
+      //첫번째 질문에 있는 화살표 방향 반대로 돌린다.
+      q.first().find('i.fas').addClass('act01');
+
+      q.click(function(){
+        $(this).find('i.fas').toggleClass('act01').parent().siblings().find('i.fas').removeClass('act01');
+
+        $(this).next().toggle().siblings('dd').hide();
+      });
+    });
+  </script>
+</head>
+<body>
+  <form name="자주하는 질문" method="post" action="search.php">
+    <section>
+      <fieldset>
+        <legend>검색</legend>
+        <i class="fas fa-search"></i>
+        <input type="search" placeholder="검색어를 입력해 주세요." id="search">
+        <input type="submit" value="검색">
+      </fieldset>
+      <h2>자주하는 질문 TOP10</h2>
+      <p>전체보기 ></p>
+      <dl class="faq">
+        <dt><span class=t_color01>1 </span>&nbsp; 반품 신청은 어떻게 하나요?
+          <i class="fas fa-angle-down"></i>
+        </dt>
+        <dd>
+          <p>반품을 신청하세요.</p>
+        </dd>
+        <dt><span class=t_color01>2 </span>&nbsp;주문을 취소하고 싶어요.
+          <i class="fas fa-angle-down"></i>
+        </dt>
+        <dd>
+          <p>주문을 취소하세요.</p>
+        </dd>
+        <dt><span class=t_color01>3 </span>&nbsp;리뷰는 어떻게 작성하나요?
+          <i class="fas fa-angle-down"></i>
+        </dt>
+        <dd>
+          <p>리뷰를 작성하세요.</p>
+        </dd>
+        <dt><span class=t_color01>4 </span>&nbsp;반품 시 별도 택배비가 부과되나요?
+          <i class="fas fa-angle-down"></i>
+        </dt>
+        <dd>
+          <p>네, 부과됩니다.</p>
+        </dd>
+        <dt><span class=t_color01>5 </span>&nbsp;원하는상품 방송시간을 문자로 받고 싶어요
+          <i class="fas fa-angle-down"></i>
+        </dt>
+        <dd>
+          <p>회원정보 > 문자 마케팅 수신동의 체크해주시길 바랍니다.</p>
+        </dd>
+        <dt><span class=t_color01>6 </span>&nbsp;회원 탈퇴는 어떻게 하나요?
+          <i class="fas fa-angle-down"></i>
+        </dt>
+        <dd>
+          <p>홈페이지 하단 회원탈퇴 버튼을 누르고 진행해주세요.</p>
+        </dd>
+        <dt><span class=t_color01>7 </span>&nbsp;배송지를 변경 할 수 있나요?
+          <i class="fas fa-angle-down"></i>
+        </dt>
+        <dd>
+          <p>출발 전까지 변경 가능합니다.</p>
+        </dd>
+        <dt><span class=t_color01>8 </span>&nbsp;교환 신청은 어떻게 하나요?
+          <i class="fas fa-angle-down"></i>
+        </dt>
+        <dd>
+          <p>구입목록 상세페이지에서 가능합니다.</p>
+        </dd>
+        <dt><span class=t_color01>9 </span>&nbsp;CJ온스타일 앱(어플리케이션)은 어떻게 설치하나요?
+          <i class="fas fa-angle-down"></i>
+        </dt>
+        <dd>
+          <p>ios> 앱스토어, 안드로이드 > 플레이마켓에서 설치 가능합니다.</p>
+        </dd>
+        <dt><span class=t_color01>10 </span>&nbsp;결제수단 변경하려면 주문취소하고 재주문하나요?
+          <i class="fas fa-angle-down"></i>
+        </dt>
+        <dd>
+          <p>네 취소 후 재주문 해주세요.</p>
+        </dd>
+      </dl>
+    </section>
+  </form>
+</body>
+</html>
