@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>원페이지-가로스크롤 레이아웃</title>
+  <link href="./css/layout.css" type="text/css" rel="stylesheet">
+
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+  <!-- 제이쿼리 ui라이브러리 -->
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+  <script>
+    $(function(){
+      //가로스크롤값 구하기
+      $(window).scroll(function(){
+        let sPos = $(this).scrollLeft();
+        $('.status').html(sPos); //화면에 출력하기
+      });
+
+      let mnu = $('.gnb ul li a');
+      mnu.click(function(){
+        
+        $('.gnb ul li a').removeClass('on');
+        $(this).addClass('on');
+
+        //선택한 a요소의 href속성값을 출력해본다.
+        let id_name = $(this).attr('href');
+        console.log(id_name); //car1, car2, car3, car4
+
+        //car1, car2, car3, car4의 왼쪽에서 떨어진  값을 출력
+        let secOffset = $(id_name).offset().left;
+        console.log(secOffset);
+
+        //각 해당하는 영역을 왼쪽끝에 애니메이션하면서 맞춤
+        $('html, body').animate({scrollLeft:secOffset},500,'easeOutQuint');
+
+        return false;
+      });
+      
+      // 마우스 휠 이벤트를 사용하여 가로스크롤 되게 하기
+      $('main section').each(function(){
+         // 개별적으로 Wheel 이벤트 적용
+        $(this).on('mousewheel',function(e){
+          
+          var delta = 0; //휠 값
+          var moveTop = null;
+          var boxMax = $("main section").length - 1;
+          var winEvent = "";
+          console.log(boxMax);
+          
+          if(!winEvent) { //만약에 이벤트가 발생하지 않는다면
+            winEvent = window.event; //이벤트는 없다
+          }
+          if(winEvent.wheelDelta) { //만약에 이벤트에서 휠데이터값이 있다면
+            delta = winEvent.wheelDelta / 120; //데이터값을 저장
+            if(window.opera) {
+                delta = -delta;
+            }
+          }          
+          else if(winEvent.detail) { //그렇지 않으면
+             delta = -winEvent.detail / 3; 
+          }
+                
+          // 마우스휠을 위에서 아래로 이동(처음에서 다음박스로 이동)
+          if(delta < 0) {
+              // 마지막 BOX 보다 순서값이 작은 경우에 실행
+              if($(this).index() < boxMax) {
+                  console.log("▼");
+                  if($(this).next() != undefined) {
+                      moveTop =$(this).next().offset().left;
+                  }
+              }
+              // 마지막 section보다 더 오른쪽으로 이동하려고 하는 경우 알림창 출력
+              // else {
+              //     alert("마지막 페이지 입니다.");
+              //     return false;
+              // }
+          }
+          // 마우스휠을 아래에서 위로 이동( 뒤에서 앞으로 이동)
+          else {
+              // 첫번째 section보다 순서값이 큰 경우에 실행
+              if($(this).index() > 0) {
+                  console.log("▲");
+                  if($(this).prev() != undefined) {
+                      moveTop =$(this).prev().offset().left;
+                  }
+              }
+              // 첫번째 section보다 더 위로 이동하려고 하는 경우 알림창 출력
+              // else {
+              //     alert("첫번째 페이지 입니다.");
+              //     return false;
+              // }
+          }
+               //화면 이동 0.3초(300)
+              $("html,body").stop().animate({scrollLeft : moveTop + "px"}, 300);
+          });
+        });
+
+    });
+  </script>
+
+</head>
+<body>
+  <span class="status"></span>
+  <!-- 헤더영역 -->
+  <header>
+    <nav class="gnb">
+      <ul>
+        <li><a href="#car1" title="Mini Cooper" class="on">Mini Cooper</a></li>
+        <li><a href="#car2" title="Tesla">Tesla</a></li>
+        <li><a href="#car3" title="Lamborghini">Lamborghini</a></li>
+        <li><a href="#car4" title="Porsche">Porsche</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 메인영역 -->
+  <main id="cont">
+    <section id="car1">
+      <h2>Mini Cooper</h2>
+      <p>미니(영어: MINI)는 독일의 자동차 제조사인 BMW의 전륜구동, 상시 4륜구동 해치백형 쿠페를 말한다. 미니는 1959년 영국의 브리티시 모터 코퍼레이션(BMC)에서 탄생되었고, BMW가 미니를 인수한 후 새롭게 설계하여 출시했다.</p>
+    </section>
+
+    <section id="car2">
+      <h2>Tesla</h2>
+      <p>테슬라(영어: Tesla, Inc.)는 미국 택사스주 오스틴에 기반을 둔 전기자동차 회사이다. 2003년, 마틴 에버하드(CEO)와 마크 타페닝(CFO)이 창업했다. 2004년 페이팔의 창업자이던 일론 머스크가 투자자로 참여했고 몇 년 후에 일론 머스크가 최대주주로 회장이 되었다.
+      </p>
+    </section>
+
+    <section id="car3">
+      <h2>Lamborghini</h2>
+      <p>람보르기니(이탈리아어: Automobili-Lamborghini S.p.A 약칭:Lamborghini)는 슈퍼카 및 스포츠카를 만드는 이탈리아의 자동차 제조 업체이다. 본사는 이탈리아 에밀리아로마냐주 볼로냐에 있다. 현재 폭스바겐 산하 고급 브랜드인 아우디의 자회사로 되어 있다.</p>
+    </section>
+
+    <section id="car4">
+      <h2>Porsche</h2>
+      <p>포르쉐는 슈퍼카를 양산할 수 있는 독일의 고급 스포츠카 제조 업체이며 폭스바겐 AG의 계열사이다. 페르디난트 포르쉐는 1899년 '야콥 로너'에 입사하여, 2년만에 수석엔지니어가 되었고, 1900년 파리 만국박람회에 세계 최초의 하이브리드 자동차인 로너-포르쉐를 공개했다.</p>
+    </section>
+  </main>
+
+  <!-- 푸터영역 -->
+  <footer>
+    <address>
+      copyright&copy;2023 가로스크롤 레이아웃 allright reserved.
+    </address>
+  </footer>
+</body>
+</html>
