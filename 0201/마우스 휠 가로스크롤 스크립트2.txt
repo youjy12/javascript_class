@@ -1,8 +1,8 @@
- $('section article').each(function(){
+ $('main section').each(function(){
          // 개별적으로 Wheel 이벤트 적용
         $(this).on('mousewheel',function(e){
           
-          var delta = 0;
+          var delta = 0; //휠 값
           var moveTop = null;
           var boxMax = $("main section").length - 1;
           var winEvent = "";

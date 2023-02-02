@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02_제이쿼리 실습응용_이미지를 활용한 탭메뉴콘텐츠</title>
+  <style>
+    ul, li{list-style:none;}
+    a{text-decoration:none;color:#333;}
+    body{
+      font-family: "맑은 고딕", arial, sans-serif;
+      font-size:12px;
+      color:#333;
+    }
+    .tab_con *{margin:0px;padding:0px;}
+    .tab_con{
+      width:1040px; height:740px;
+      border:3px solid #000;
+      margin: 0 auto;
+      position: relative;
+    }
+    .tab_con > h2{
+      display:none;
+    }
+    .tab_con > ul{
+      display:flex;
+    }
+    .tab_con >ul >li{
+      width:20%; height: 120px;
+      text-align: center;
+    }
+    .tab_con >ul >li a{
+      font-size: 18px;
+      display:block;
+      font-weight: bold;
+      padding: 23px 0px;
+    }
+    .tab_con a>img{
+      height:49px;
+    }
+    .tab_con .con{
+      width:1040px; height: 620px;
+      position:absolute;
+      top:120px;
+      left:0px;
+    }
+    .tab_con .con img{
+      width: 100%; height:620px;
+    }
+    .act{
+      background:#f06d01;
+      color: #fff;
+    }
+  </style>
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    $(function(){
+      //1. 변수선언
+      let t_mnu = $('.tab_con li a');
+
+      t_mnu.click(function(e){
+        e.preventDefault();
+        let off = $('.tab_con a').attr('href');
+
+        $(this).addClass('act').parent().siblings().find('a').removeClass('act');
+        //방법 1. 인덱스값을 사용하여 해당하는 eq()메서드를 사용
+        //방법 2. this.next()
+        // $('.tab_con div').hide();
+        // $(this).next().show();
+        $(this).next().show().parent().siblings().find('div').hide();
+
+        t_mnu.each(function(){
+          if($(this).hasClass('act')){
+            let on = $(this).find('img').attr('src').replace('_off','_on');
+            $(this).find('img').attr('src',on);
+          } else{
+            let off = $(this).find('img').attr('src').replace('_on','_off');
+            $(this).find('img').attr('src',off);
+          }
+        });
+      });
+      
+    });
+  </script>
+</head>
+<body>
+  <article class="tab_con">
+    <h2>테마여행</h2>
+    <ul>
+      <li>
+        <a href="./img/ico_theme_zone_1_on.png" title="테마여행" class="act">
+          <img src="./img/ico_theme_zone_1_on.png" alt="테마여행아이콘">
+          <p>테마여행</p>
+        </a>
+        <div class="con c01">
+          <img src="./img/01.jpg" alt="테마여행이미지">
+        </div>
+      </li>
+      <li>
+        <a href="./img/ico_theme_zone_2_on.png" title="추천일정">
+          <img src="./img/ico_theme_zone_2_off.png" alt="추천일정아이콘">
+          <p>추천일정</p>
+        </a>
+        <div class="con c02">
+          <img src="./img/02.jpg" alt="추천일정 이미지">
+        </div>
+      </li>
+      <li>
+        <a href="./img/ico_theme_zone_3_on.png" title="스크린속 제주">
+          <img src="./img/ico_theme_zone_3_off.png" alt="스크린속 제주아이콘">
+          <p>스크린속 제주</p>
+        </a>
+        <div class="con c01">
+          <img src="./img/03.jpg" alt="스크린속 제주 이미지">
+        </div>
+      </li>
+      <li>
+        <a href="./img/ico_theme_zone_4_on.png" title="교통정보">
+          <img src="./img/ico_theme_zone_4_off.png" alt="교통정보아이콘">
+          <p>교통정보</p>
+        </a>
+        <div class="con c01">
+          <img src="./img/04.jpg" alt="교통정보">
+        </div>
+      </li>
+      <li>
+        <a href="./img/ico_theme_zone_5_on.png" title="안전,안심관광 가이드">
+          <img src="./img/ico_theme_zone_5_off.png" alt="안전,안심관광 가이드아이콘">
+          <p>안전&middot;안심관광 가이드</p>
+        </a>
+        <div class="con c01">
+          <img src="./img/05.jpg" alt="안전,안심관광 가이드 이미지">
+        </div>
+      </li>
+    </ul>
+  </article>
+</body>
+</html>
