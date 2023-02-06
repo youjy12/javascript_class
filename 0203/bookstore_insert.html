@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>그린아트 서점 DB 입력 사이트</title>
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* input reset */
+input[type="text"],
+input[type="num"] {
+    width: 300px;
+    height: 30px;
+    border: none;
+    padding: 0 10px;
+}
+
+/* select css from safari */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url("https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-down-512.png") no-repeat 95% 50%;
+    background-size: 20px;
+    width: 140px;
+    height: 30px;
+    border: 1px solid #dcdcdc;
+    padding: 0 10px;
+}
+option {
+    background: #fff;
+    color: #dcdcdc;
+    padding: 10px;
+}
+fieldset {
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    border: none;
+}
+p {
+    text-align: left;
+    font-size: 14px;
+    line-height: 60px;
+    border-top: 1px solid #dcdcdc;
+}
+legend {
+    width: 100%;
+    height: 30px;
+    background: rgb(248, 78, 121);
+    line-height: 30px;
+    color: #fff;
+}
+input {
+    width: 300px;
+    height: 30px;
+    border: none;
+    padding: 0 10px;
+}
+label {
+    display: inline-block;
+    width: 100px;
+}
+input::before {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 30px;
+    background: #dcdcdc;
+    text-align: center;
+}
+#name {
+    color: red;
+}
+button[type="submit"] {
+    width: 100px;
+    height: 30px;
+    border: none;
+    background: rgb(248, 78, 121);
+    color: #fff;
+}
+button[type="reset"] {
+    color: #333;
+    border: 1px solid #dcdcdc;
+    background: none;
+    width: 100px;
+    height: 30px;
+    margin-right: 10px;
+}
+button[type="reset"]:hover {
+    border: 1px solid #333;
+}
+div {
+    display: flex;
+    height: 30px;
+    margin-top: 20px;
+}
+div > address {
+    width: 80%;
+    text-align: left;
+    font-style: normal;
+    line-height: 30px;
+    font-size: 12px;
+    color: #777;
+}
+  </style>
+</head>
+<body>
+  <form method="POST" action="./bookstore_insert.php">
+    <fieldset>
+      <legend>그린아트 서점 DB 입력 사이트</legend>
+
+      <p>
+        <label for="t_01">상호</label>
+        <select name="name" id="t_01">
+          <option value="null">서점을 선택해주세요 <i></i></option>
+          <option value="교보문고">교보문고</option>
+          <option value="예스24">예스24</option>
+          <option value="알라딘">알라딘</option>
+          <option value="밀리">밀리</option>
+          <option value="">기타</option>
+        </select>
+        <span id="name"></span>
+      </p>
+      <p>
+        <label for="t_02">주소(시/도)</label>
+        <input type="text" name="AREA1" id="t_02" maxlength="10" placeholder="시/도 주소를 입력해주세요">
+      </p>
+      <p>
+        <label for="t_03">주소(구/군)</label>
+        <input type="text" name="AREA2" id="t_03" maxlength="10" placeholder="구/군 주소를 입력해주세요">
+    </p>
+    <p>
+      <label for="t_04">주소(동/면)</label>
+      <input type="text" name="AREA3" id="t_04" maxlength="10" placeholder="동/읍/면 주소를 입력해주세요">
+    </p>
+    <p>
+      <label for="t_05">보유서적수</label>
+      <input type="num" name="book_cnt" id="t_05" maxlength="10" placeholder="서점의 보유 서적수를 입력해주세요">
+    </p>
+    <p>
+      <label for="t_06">대표자 성명</label>
+      <input type="text" name="OWNER_NM" id="t_06" maxlength="10" placeholder="대표자 성명을 입력해주세요">
+    </p>
+    <p>
+      <label for="t_07">대표자 전화번호</label>
+      <input type="text" name="TEL_NUM" id="t_07" maxlength="20" placeholder="대표자 전화번호를 입력해주세요">
+    <p>
+    <div>
+    <address>copy &copy; XXX copyrigt allright reserved</address>
+    <button type="reset">입력취소 및 초기화</button>
+    <button type="submit" id="submit">입력 완료</button>
+    </div>
+    </fieldset>
+    <script>
+      //기타를 선택했을때 input 태그 추가
+      const select = document.querySelector('#t_01');
+      const input = document.createElement('input');
+      const alertWindow = document.querySelector('#name')
+      const submit = document.querySelector('#submit')
+
+      submit.addEventListener('click', (e)=>{
+        if (select.value === 'null'){
+        alertWindow.innerText = '서점을 필수로 선택해 주세요.';
+        e.preventDefault();
+      } else if (input.value === ''){
+        const p = document.createElement('p');
+        p.innerText = '서점명을 입력해주세요.';
+        p.style.color = 'red';
+        input.parentNode.appendChild(p);
+        e.preventDefault();
+      }
+      });
+
+      input.setAttribute('type', 'text');
+      input.setAttribute('name', 'NAME');
+      input.setAttribute('id', 't_01');
+      input.setAttribute('maxlength', '10');
+      input.setAttribute('placeholder', '서점 상호를 입력해주세요');
+      select.addEventListener('change', (e) => {
+        if (e.target.value === '') {
+          select.parentNode.appendChild(input);
+        } else {
+          select.parentNode.removeChild(input);
+        }
+      });
+    </script>
+
+  </form>
+  
+</body>
+</html>
